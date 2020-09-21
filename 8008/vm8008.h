@@ -25,6 +25,7 @@ public:
     uint8_t get_E() const;
     uint8_t get_H() const;
     uint8_t get_L() const;
+    uint16_t get_HL() const;
 
     // Flags
     void set_carry(bool);
@@ -36,9 +37,11 @@ public:
     bool get_zero() const;
     bool get_sign() const;
 
-    // Program counter
+    // Program counter and address stack
     void set_pc(uint16_t);
     uint16_t get_pc() const;
+    void push_pc_stack(uint16_t);
+    void pop_pc_stack();
 
     // Memory
     void set_memory(uint16_t, uint8_t);
@@ -63,7 +66,7 @@ private:
     bool flag_sign;
 
     // Program counter
-    uint8_t pc;
+    uint16_t pc_stack[8];
 
     // Memory
     uint8_t memory[16384];
